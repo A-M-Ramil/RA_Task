@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # ---------------------------------------------------------
+  # BRAC University ACA-Py Agent (Issuer & Verifier)
+  # ---------------------------------------------------------
+  university-acapy:
+    container_name: university-portal-agent
+    image: ghcr.io/openwallet-foundation/acapy-agent:py3.12-1.2.0
+    ports:
+      - "8020:8000" # ADMIN PORT (Your backend talks to this)
+      - "8021:8001" # HTTP PORT  (Mobile wallet talks to this via Ngrok)
+    environment:
+      - ACAPY_GENESIS_URL=http://test.bcovrin.vonx.io/genesis
+      
+      # 32-character seed (Make sure to register this seed on BCovrin web interface first)
+      - ACAPY_WALLET_SEED=brac_university_portal_seed_0001
+      
+      # Your single Ngrok URL exposing local port 8021
+      - ACAPY_ENDPOINT=https://unloveable-macromolecular-leif.ngrok-free.dev
+      
+      - ACAPY_LABEL=BRAC_University_Portal
+      - ACAPY_INBOUND_TRANSPORT=[["http", "0.0.0.0", "8001"]]
+      - ACAPY_OUTBOUND_TRANSPORT=["http"]
+      - ACAPY_ADMIN=["0.0.0.0", "8000"]
+      - ACAPY_ADMIN_INSECURE_MODE=true
+      
+      - ACAPY_WALLET_TYPE=askar
+      - ACAPY_WALLET_NAME=university_wallet
+      - ACAPY_WALLET_KEY=university_secret_key
+      - ACAPY_AUTO_PROVISION=true
+      
+      # Automations to make the login/issuance smooth
+      - ACAPY_AUTO_ACCEPT_INVITES=true
+      - ACAPY_AUTO_ACCEPT_REQUESTS=true
+      - ACAPY_AUTO_VERIFY_PRESENTATION=true
+      - ACAPY_LOG_LEVEL=info
+      - ACAPY_PRESERVE_EXCHANGE_RECORDS=true
+    command: start
