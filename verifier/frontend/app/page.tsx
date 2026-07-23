@@ -138,7 +138,7 @@ export default function VerifierPortal() {
             <LockKeyhole className="h-10 w-10 text-violet-400" />
           </div>
           <div>
-            <h1 className="text-4xl font-bold tracking-tight text-white">BRACU Campus Services</h1>
+            <h1 className="text-4xl font-bold tracking-tight text-white">BRACU Student Login</h1>
             <p className="text-zinc-400 mt-2 font-medium tracking-wide">Zero-Trust Lab Access & SSO Portal</p>
           </div>
         </div>

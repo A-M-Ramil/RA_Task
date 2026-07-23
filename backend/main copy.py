@@ -2,15 +2,14 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import httpx
 from pydantic import BaseModel
-from messaging_router import router as messaging_router
 
 # --- CONFIGURATION (STRICTLY VERIFIER ONLY) ---
 # Talks ONLY to the Verifier ACA-Py Agent
 ACAPY_ADMIN_URL = "http://127.0.0.1:8030"
 
 # Credential Definition ID (Used to ensure the proof comes from the BRACU Registrar)
-STUDENT_SCHEMA_ID = "GEX6Tv3ywc7HzWukCyveY5:2:student_id_credential:1.9360"
-STUDENT_CRED_DEF_ID = "GEX6Tv3ywc7HzWukCyveY5:3:CL:3225281:brac_tag_9360"
+STUDENT_SCHEMA_ID = "GEX6Tv3ywc7HzWukCyveY5:2:student_id_credential:1.6478"
+STUDENT_CRED_DEF_ID = "GEX6Tv3ywc7HzWukCyveY5:3:CL:3225257:brac_tag_6478"
 # --- PYDANTIC REQUEST MODELS ---
 class VerifyRequest(BaseModel):
     connection_id: str
@@ -29,7 +28,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.include_router(messaging_router)
+
 # --- ROUTES ---
 
 @app.get("/")

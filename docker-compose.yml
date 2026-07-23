@@ -77,27 +77,34 @@ services:
     command: start
 
   # ---------------------------------------------------------
-  # 2. VERIFIER AGENT (Handles Login & Lab Access)
+  # 2. VERIFIER AGENT (Handles Login, Lab Access & Messaging)
   # ---------------------------------------------------------
   verifier-acapy:
     container_name: bracu-verifier-agent
     image: ghcr.io/openwallet-foundation/acapy-agent:py3.12-1.2.0
     ports:
       - "8030:8000" # ADMIN PORT (FastAPI requests proofs here)
-      - "8031:8001" # HTTP PORT  (Mobile wallet talks to this via Ngrok 2)
+      - "8031:8001" # HTTP PORT  (Mobile wallet talks to this via Cloudflare)
+    # Allows the container to talk to localhost on Linux systems if needed
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       - ACAPY_GENESIS_URL=http://test.bcovrin.vonx.io/genesis
       
       # NO SEED NEEDED (Verifiers only read from the ledger)
       
-      # NGROK TUNNEL 2 (Must point to local port 8031)
-      - ACAPY_ENDPOINT=https://choosing-oven-twisted-experiencing.trycloudflare.com 
+      # CLOUDFLARE TUNNEL 2 (Must point to local port 8031)
+      - ACAPY_ENDPOINT=https://arrives-static-pools-shopping.trycloudflare.com
       
       - ACAPY_LABEL=BRAC_Campus_Services
       - ACAPY_INBOUND_TRANSPORT=[["http", "0.0.0.0", "8001"]]
       - ACAPY_OUTBOUND_TRANSPORT=["http"]
       - ACAPY_ADMIN=["0.0.0.0", "8000"]
       - ACAPY_ADMIN_INSECURE_MODE=true
+      
+      # 🚨 NEW WEBHOOK URL ADDED HERE 🚨
+      - ACAPY_WEBHOOK_URL=http://host.docker.internal:8001/messaging
+      
       - ACAPY_WALLET_TYPE=askar
       - ACAPY_WALLET_NAME=verifier_wallet
       - ACAPY_WALLET_KEY=verifier_secret_key
