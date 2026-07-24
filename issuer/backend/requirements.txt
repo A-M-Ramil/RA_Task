@@ -1,0 +1,11 @@
+# Web Framework
+fastapi
+uvicorn[standard]
+
+# Async HTTP Client (Crucial for ACA-Py Admin API calls)
+httpx
+
+# Data Validation & Environment Variables
+pydantic
+pydantic-settings
+python-dotenv
