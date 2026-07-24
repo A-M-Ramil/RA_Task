@@ -55,6 +55,7 @@ graph TD
 ```
 📁 Repository Structure
 The project is strictly divided into two independent applications, each with its own dedicated Next.js frontend and FastAPI backend:
+```
 .
 ├── docker-compose.yml       # Defines both ACA-Py agents (Issuer & Verifier)
 ├── issuer/
@@ -64,7 +65,7 @@ The project is strictly divided into two independent applications, each with its
     ├── backend/             # FastAPI (Port 8001) & messaging_router.py
     └── frontend/            # Next.js Portal (Port 3001)
 
-
+```
 ✨ Features
 - Completely Decoupled Architecture: Independent Issuer and Verifier nodes with zero shared frontend/backend state.
 
