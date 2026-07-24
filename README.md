@@ -143,7 +143,7 @@ npm run dev
 ### Phase 1: Registration & Issuance (localhost:3000)
 - Open the Issuer Web Portal (http://localhost:3000).
 
-- Enter your student/faculty details.
+- Enter your student details.
 
 - Scan the generated QR code with your mobile wallet to form a connection.
 
