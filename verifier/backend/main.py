@@ -9,8 +9,8 @@ from messaging_router import router as messaging_router
 ACAPY_ADMIN_URL = "http://127.0.0.1:8030"
 
 # Credential Definition ID (Used to ensure the proof comes from the BRACU Registrar)
-STUDENT_SCHEMA_ID = "GEX6Tv3ywc7HzWukCyveY5:2:student_id_credential:1.9360"
-STUDENT_CRED_DEF_ID = "GEX6Tv3ywc7HzWukCyveY5:3:CL:3225281:brac_tag_9360"
+STUDENT_SCHEMA_ID = "GEX6Tv3ywc7HzWukCyveY5:2:student_id_credential:1.5042"
+STUDENT_CRED_DEF_ID = "GEX6Tv3ywc7HzWukCyveY5:3:CL:3225780:brac_tag_5042"
 # --- PYDANTIC REQUEST MODELS ---
 class VerifyRequest(BaseModel):
     connection_id: str

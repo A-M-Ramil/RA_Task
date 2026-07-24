@@ -30,6 +30,9 @@ export default function Dashboard() {
   const handleLabAccessClick = () => {
     router.push("/lab-access");
   };
+  const handleMessageClick = () => {
+    router.push("/messages");
+  };
   useEffect(() => {
     // Read the securely verified data from the session
     const storedData = sessionStorage.getItem("bracu_user");
@@ -85,6 +88,14 @@ export default function Dashboard() {
             >
               <ShieldCheck className="h-4 w-4 " />
               Lab Access
+            </Button>
+            <Button 
+              variant="outline"
+              onClick={handleMessageClick}
+              className="bg-violet-600/50 border-violet-600 h-10 w-40 hover:bg-violet-500 text-white font-medium shadow-sm transition-colors duration-200"
+            >
+              <Mail className="h-4 w-4 " />
+              Messages
             </Button>
 
             <Button 

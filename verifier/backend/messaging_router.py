@@ -1,27 +1,3 @@
-"""
-Messaging router — 1:1 secure messaging bonus feature.
-
-Attach this to your VERIFIER backend (the one that already owns login,
-dashboard, and protected pages). It reuses that same ACA-Py agent —
-it just opens a second, separate connection per person (student or
-faculty), distinct from whatever connection was used for login/proof.
-
-Usage in your main app:
-
-    from messaging_router import router as messaging_router
-    app.include_router(messaging_router)
-
-ACA-Py must be started with a webhook URL pointing at this router, e.g.:
-
-    --webhook-url http://127.0.0.1:8000/messaging
-
-ACA-Py appends /topic/<topic>/ itself, so the resulting calls land on
-POST /messaging/topic/<topic>/ — which is exactly the route defined below.
-
-Remember to app.include_router(router) in your main app AFTER importing
-this module — the routes only exist on the FastAPI app once that call runs.
-"""
-
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
@@ -35,28 +11,7 @@ router = APIRouter(prefix="/messaging", tags=["messaging"])
 ACAPY_ADMIN_URL = "http://127.0.0.1:8030"
 
 db_conn = sqlite3.connect("messaging.db", check_same_thread=False)
-# cursor = db_conn.cursor()
 
-# cursor.execute('''
-#     CREATE TABLE IF NOT EXISTS messaging_connections (
-#         connection_id TEXT PRIMARY KEY,
-#         role TEXT NOT NULL,          -- 'student' or 'faculty'
-#         owner_id TEXT NOT NULL,      -- student_id, faculty email, etc.
-#         label TEXT,
-#         invitation_url TEXT,
-#         created_at TEXT DEFAULT CURRENT_TIMESTAMP
-#     )
-# ''')
-# cursor.execute('''
-#     CREATE TABLE IF NOT EXISTS chat_messages (
-#         id INTEGER PRIMARY KEY AUTOINCREMENT,
-#         connection_id TEXT,
-#         direction TEXT,               -- 'in' (arrived from a wallet) or 'out' (sent by backend)
-#         content TEXT,
-#         created_at TEXT DEFAULT CURRENT_TIMESTAMP
-#     )
-# ''')
-# db_conn.commit()
 
 
 class CreateInviteRequest(BaseModel):

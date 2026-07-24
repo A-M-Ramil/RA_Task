@@ -4,6 +4,7 @@ source venv/bin/activate
 pip install fastapi uvicorn pydantic httpx
 
 cloudflared tunnel --url http://localhost:8031
+ngrok http 3021
 
 uvicorn main:app --port 8000
 uvicorn main:app --port 8001

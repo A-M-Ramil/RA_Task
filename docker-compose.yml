@@ -91,10 +91,10 @@ services:
     environment:
       - ACAPY_GENESIS_URL=http://test.bcovrin.vonx.io/genesis
       
-      # NO SEED NEEDED (Verifiers only read from the ledger)
+      
       
       # CLOUDFLARE TUNNEL 2 (Must point to local port 8031)
-      - ACAPY_ENDPOINT=https://arrives-static-pools-shopping.trycloudflare.com
+      - ACAPY_ENDPOINT=https://man-sides-ghz-rarely.trycloudflare.com
       
       - ACAPY_LABEL=BRAC_Campus_Services
       - ACAPY_INBOUND_TRANSPORT=[["http", "0.0.0.0", "8001"]]
