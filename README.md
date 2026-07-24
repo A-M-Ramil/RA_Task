@@ -52,7 +52,7 @@ graph TD
     class IB,VB backend;
     class IA,VA agent;
     class Wallet mobile;
-
+```
 📁 Repository Structure
 The project is strictly divided into two independent applications, each with its own dedicated Next.js frontend and FastAPI backend:
 .
