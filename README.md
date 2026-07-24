@@ -53,7 +53,7 @@ graph TD
     class IA,VA agent;
     class Wallet mobile;
 ```
-📁 Repository Structure
+## 📁 Repository Structure
 The project is strictly divided into two independent applications, each with its own dedicated Next.js frontend and FastAPI backend:
 ```
 .
@@ -66,7 +66,7 @@ The project is strictly divided into two independent applications, each with its
     └── frontend/            # Next.js Portal (Port 3001)
 
 ```
-✨ Features
+## ✨ Features
 - Completely Decoupled Architecture: Independent Issuer and Verifier nodes with zero shared frontend/backend state.
 
 - Verifiable Credentials: Issues digital student/faculty IDs to digital wallets.
@@ -78,7 +78,7 @@ The project is strictly divided into two independent applications, each with its
 - Modern UI: Built with Next.js, Tailwind CSS, shadcn/ui, and Lucide icons for a premium aesthetic.
 
 
-📋 Prerequisites
+## 📋 Prerequisites
 - Docker and Docker Compose
 
 - Node.js (v18+)
@@ -89,5 +89,10 @@ The project is strictly divided into two independent applications, each with its
 
 - A compatible digital wallet (e.g., BC Wallet, Aries Bifold) installed on your mobile device.
 
+## 🚀 Setup & Installation
+1. Start the ACA-Py Agents
+The ecosystem relies on two containerized ACA-Py agents. Ensure your tunnel URLs are correctly set in docker-compose.yml:
 
+issuer-acapy must use your Ngrok endpoint.
 
+verifier-acapy must use your Cloudflare endpoint.
