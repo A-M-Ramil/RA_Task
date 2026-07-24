@@ -90,9 +90,79 @@ The project is strictly divided into two independent applications, each with its
 - A compatible digital wallet (e.g., BC Wallet, Aries Bifold) installed on your mobile device.
 
 ## 🚀 Setup & Installation
-1. Start the ACA-Py Agents
+### 1. Start the ACA-Py Agents
 The ecosystem relies on two containerized ACA-Py agents. Ensure your tunnel URLs are correctly set in docker-compose.yml:
 
-issuer-acapy must use your Ngrok endpoint.
+- issuer-acapy must use your Ngrok endpoint.
+- verifier-acapy must use your Cloudflare endpoint.
+```
+docker compose up -d
 
-verifier-acapy must use your Cloudflare endpoint.
+```
+
+### 2. Start the Backends
+Open two separate terminal windows.
+
+*Issuer Backend:*
+Run the schema setup first (if running for the first time), then start the server.
+```Bash
+cd issuer/backend
+pip install -r requirements.txt
+python setup_schema.py
+uvicorn main:app --port 8000 --reload
+```
+
+*Verifier Backend (Includes Messaging):*
+
+```Bash
+cd verifier/backend
+pip install -r requirements.txt
+uvicorn main:app --port 8001 --reload
+```
+### 3. Start the Frontends
+
+Open two more terminal windows to start the independent Next.js applications.
+
+*Issuer Frontend (Port 3000):*
+
+```Bash
+cd issuer/frontend
+npm install
+npm run dev
+```
+
+*Verifier Frontend (Port 3001):*
+
+```Bash
+cd verifier/frontend
+npm install
+npm run dev
+```
+#### Note: Next.js will automatically assign port 3001 if 3000 is occupied.
+## 🧪 How to Run the End-to-End Demo
+### Phase 1: Registration & Issuance (localhost:3000)
+- Open the Issuer Web Portal (http://localhost:3000).
+
+- Enter your student/faculty details.
+
+- Scan the generated QR code with your mobile wallet to form a connection.
+
+- Accept the credential offer in your wallet to receive your digital ID.
+
+### Phase 2: Login & Lab Access (localhost:3001)
+- Open the Verifier Web Portal (http://localhost:3001).
+
+- Navigate to Login or Lab Access.
+
+- Scan the new QR code with your wallet to connect to the Verifier.
+
+- The portal will request a Proof of Presentation. Accept it in your wallet to cryptographically verify your identity and gain access.
+
+### Phase 3: Secure DIDComm Messaging (localhost:3001)
+- From the authenticated Verifier dashboard, open the Secure Messaging panel.
+
+- Click "Generate Connection QR" to establish a dedicated 1:1 messaging channel.
+
+- Scan the QR code with your wallet.
+
+- Chat in real-time between the Next.js portal and your mobile wallet securely!
